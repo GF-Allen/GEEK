@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Geek</string>
+    <string name="title_activity_category">CategoryActivity</string>
+    <string name="title_activity_chapter">ChapterActivity</string>
+</resources>
