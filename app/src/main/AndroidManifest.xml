@@ -13,18 +13,21 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activity.CategoryActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ChapterActivity"
+            android:label="@string/title_activity_chapter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.DetailActivity" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.ChapterActivity"
-            android:label="@string/title_activity_chapter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.DetailActivity" />
     </application>
 
 </manifest>

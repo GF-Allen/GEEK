@@ -1,6 +1,6 @@
 package com.alen.runoob.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alen.runoob.R;
 import com.alen.runoob.activity.ChapterActivity;
 import com.alen.runoob.bean.Category;
 import com.alen.runoob.listenter.OnItemClickListener;
+import com.alen.runoob.utils.CircularAnim;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -21,10 +23,10 @@ import java.util.List;
  */
 public class VPCategoryAdapter extends PagerAdapter {
 
-    private Context context;
+    private Activity context;
     private List<Category> datas;
 
-    public VPCategoryAdapter(Context context, List<Category> datas) {
+    public VPCategoryAdapter(Activity context, List<Category> datas) {
         this.context = context;
         this.datas = datas;
     }
@@ -67,7 +69,7 @@ public class VPCategoryAdapter extends PagerAdapter {
                 Intent intent = new Intent(context, ChapterActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);
-                context.startActivity(intent);
+                CircularAnim.startActivity(context, intent, v, R.color.colorPrimary);
             }
         });
         v.setAdapter(adapter);

@@ -14,6 +14,7 @@ import com.alen.runoob.bean.Chapter;
 import com.alen.runoob.rx.MyObserver;
 import com.alen.runoob.listenter.OnItemClickListener;
 import com.alen.runoob.rx.ApiManager;
+import com.alen.runoob.utils.CircularAnim;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class ChapterActivity extends BaseActivity {
                         Intent intent = new Intent(ChapterActivity.this, DetailActivity.class);
                         intent.putExtra("url", link);
                         intent.putExtra("title", title);
-                        startActivity(intent);
+                        CircularAnim.startActivity(ChapterActivity.this,intent,v,R.color.colorPrimary);
                     }
                 });
                 rvChapter.setAdapter(adapter);
