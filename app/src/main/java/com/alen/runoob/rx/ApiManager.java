@@ -1,7 +1,7 @@
 package com.alen.runoob.rx;
 
-import com.alen.runoob.bean.Category;
-import com.alen.runoob.bean.Chapter;
+import com.alen.runoob.greendao.bean.Category;
+import com.alen.runoob.greendao.bean.Chapter;
 import com.alen.runoob.runoob.Runoob;
 
 import java.util.List;

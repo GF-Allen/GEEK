@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import com.alen.runoob.R;
 import com.alen.runoob.activity.ChapterActivity;
-import com.alen.runoob.bean.Category;
+import com.alen.runoob.greendao.bean.Category;
+import com.alen.runoob.greendao.bean.Item;
 import com.alen.runoob.listenter.OnItemClickListener;
 import com.alen.runoob.utils.CircularAnim;
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,7 +58,7 @@ public class VPCategoryAdapter extends PagerAdapter {
                 }
             }
         });
-        final ArrayList<Category.Item> items = datas.get(position).getItem();
+        final List<Item> items = datas.get(position).getItem();
         v.setLayoutManager(new GridLayoutManager(context, 1));
         RVCategoryAdapter adapter = new RVCategoryAdapter(items, context);
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -66,9 +66,11 @@ public class VPCategoryAdapter extends PagerAdapter {
             public void onItemClickListener(View v, int position) {
                 String link = items.get(position).getLink();
                 String title = items.get(position).getTitle();
+                Long id = items.get(position).getId();
                 Intent intent = new Intent(context, ChapterActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);
+                intent.putExtra("id", id);
                 CircularAnim.startActivity(context, intent, v, R.color.colorPrimary);
             }
         });

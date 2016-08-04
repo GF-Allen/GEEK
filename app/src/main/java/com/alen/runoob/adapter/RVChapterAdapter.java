@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alen.runoob.R;
-import com.alen.runoob.bean.Chapter;
+import com.alen.runoob.greendao.bean.Chapter;
 import com.alen.runoob.listenter.OnItemClickListener;
 
 import java.util.List;

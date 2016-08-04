@@ -6,12 +6,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.alen.runoob.App;
 import com.alen.runoob.R;
 import com.alen.runoob.activity.base.BaseActivity;
 import com.alen.runoob.adapter.VPCategoryAdapter;
-import com.alen.runoob.bean.Category;
-import com.alen.runoob.rx.ApiManager;
-import com.alen.runoob.rx.MyObserver;
+import com.alen.runoob.greendao.bean.Category;
+import com.alen.runoob.greendao.gen.CategoryDao;
+import com.alen.runoob.greendao.gen.DaoSession;
 
 import java.util.List;
 
@@ -34,13 +35,19 @@ public class CategoryActivity extends BaseActivity {
 
     @Override
     protected void loadServer() {
-        ApiManager.getObCategory(new MyObserver<List<Category>>() {
-            @Override
-            public void onNext(List<Category> categories) {
-                vpCategory.setAdapter(new VPCategoryAdapter(CategoryActivity.this, categories));
-                tabs.setupWithViewPager(vpCategory);
-            }
-        });
+        DaoSession daoSession = App.daoMaster.newSession();
+        CategoryDao categoryDao = daoSession.getCategoryDao();
+        List<Category> categories = categoryDao.queryBuilder().list();
+
+        vpCategory.setAdapter(new VPCategoryAdapter(CategoryActivity.this, categories));
+        tabs.setupWithViewPager(vpCategory);
+//        ApiManager.getObCategory(new MyObserver<List<Category>>() {
+//            @Override
+//            public void onNext(List<Category> categories) {
+//                vpCategory.setAdapter(new VPCategoryAdapter(CategoryActivity.this, categories));
+//                tabs.setupWithViewPager(vpCategory);
+//            }
+//        });
     }
 
     private long exitTime = 0;

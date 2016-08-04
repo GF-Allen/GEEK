@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alen.runoob.R;
-import com.alen.runoob.bean.Category;
+import com.alen.runoob.greendao.bean.Item;
 import com.alen.runoob.listenter.OnItemClickListener;
 import com.bumptech.glide.Glide;
 
@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.ViewHolder> {
 
-    private List<Category.Item> datas;
+    private List<Item> datas;
     private Context context;
 
-    public RVCategoryAdapter(List<Category.Item> datas, Context context) {
+    public RVCategoryAdapter(List<Item> datas, Context context) {
         this.datas = datas;
         this.context = context;
     }
@@ -36,7 +36,7 @@ public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Category.Item data = datas.get(position);
+        Item data = datas.get(position);
         holder.tvTitle.setText(data.getTitle());
         holder.tvDes.setText(data.getDes());
         Glide.with(context).load(data.getImage()).into(holder.ivImage);
