@@ -14,14 +14,19 @@ import com.alen.runoob.greendao.gen.DaoSession;
 import com.alen.runoob.greendao.gen.ItemDao;
 import com.alen.runoob.rx.ApiManager;
 import com.alen.runoob.rx.MyObserver;
+import com.hanks.htextview.HTextView;
 
 import java.util.List;
 
 public class SplashActivity extends BaseActivity {
 
+    private HTextView text;
+
     @Override
     public void initWidget() {
         setContentView(R.layout.activity_splash);
+        text = findView(R.id.text);
+        text.animateText("爱生活，爱编程");
     }
 
     @Override

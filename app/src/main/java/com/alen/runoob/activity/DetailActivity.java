@@ -7,27 +7,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 
 import com.alen.runoob.R;
 import com.alen.runoob.activity.base.BaseActivity;
 import com.alen.runoob.js.Js;
+import com.github.ybq.android.spinkit.SpinKitView;
 
 import java.lang.ref.WeakReference;
 
 public class DetailActivity extends BaseActivity {
 
     private WebView wvRunoob;
-    private ProgressBar pbLoading;
+    private SpinKitView loading;
     private Toolbar toolbar;
 
     private MyHandler handler = new MyHandler();
-
+    private String url;
     @Override
     public void initWidget() {
         setContentView(R.layout.activity_detail);
         wvRunoob = findView(R.id.wb_runoob);
-        pbLoading = findView(R.id.pb_loading);
+        loading = findView(R.id.loading);
         toolbar = findView(R.id.toolbar);
 
         showContent(false);
@@ -47,7 +47,7 @@ public class DetailActivity extends BaseActivity {
                 view.loadUrl(Js.hideDiv);
                 view.loadUrl(Js.hide);
                 view.loadUrl("javascript:hide();");
-                handler.sendEmptyMessageDelayed(0, 300);
+                handler.sendEmptyMessageDelayed(0, 500);
                 super.onPageFinished(view, url);
             }
 
@@ -62,7 +62,7 @@ public class DetailActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String url = getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra("url");
         wvRunoob.loadUrl(url);
     }
 
@@ -109,8 +109,10 @@ public class DetailActivity extends BaseActivity {
 
             DetailActivity m = weakReference.get();
 
-            if (msg.what == 0) {
-                m.showContent(true);
+            switch (msg.what) {
+                case 0:
+                    m.showContent(true);
+                    break;
             }
         }
     }
@@ -121,7 +123,7 @@ public class DetailActivity extends BaseActivity {
      * @param isShow
      */
     public void showContent(boolean isShow) {
-        pbLoading.setVisibility(isShow ? View.INVISIBLE : View.VISIBLE);
+        loading.setVisibility(isShow ? View.INVISIBLE : View.VISIBLE);
         wvRunoob.setVisibility(isShow ? View.VISIBLE : View.INVISIBLE);
     }
 }

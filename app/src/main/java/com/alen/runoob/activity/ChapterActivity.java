@@ -42,7 +42,8 @@ public class ChapterActivity extends BaseActivity {
         String url = getIntent().getStringExtra("url");
         id = getIntent().getLongExtra("id", -1);
 
-        List<Chapter> chapters = chapterDao.queryBuilder().where(ChapterDao.Properties.ItemId.gt(id)).orderAsc(ChapterDao.Properties.Id).list();
+        List<Chapter> chapters = chapterDao.queryBuilder()
+                .where(ChapterDao.Properties.ItemId.eq(id)).orderAsc(ChapterDao.Properties.Id).list();
         if (chapters.size() != 0) {
             setData(chapters);
         } else {
