@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alen.runoob.R;
-import com.alen.runoob.greendao.bean.Chapter;
+import com.alen.runoob.greendao.bean.RunoobChapter;
 import com.alen.runoob.listenter.OnItemClickListener;
 
 import java.util.List;
@@ -18,9 +18,9 @@ import java.util.List;
 public class RVChapterAdapter extends RecyclerView.Adapter<RVChapterAdapter.Viewholder> {
 
     private Context context;
-    private List<Chapter> datas;
+    private List<RunoobChapter> datas;
 
-    public RVChapterAdapter(Context context, List<Chapter> datas) {
+    public RVChapterAdapter(Context context, List<RunoobChapter> datas) {
         this.context = context;
         this.datas = datas;
     }

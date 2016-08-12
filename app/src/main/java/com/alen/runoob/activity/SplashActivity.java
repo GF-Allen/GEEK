@@ -3,16 +3,16 @@ package com.alen.runoob.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
 
 import com.alen.runoob.App;
 import com.alen.runoob.R;
 import com.alen.runoob.activity.base.BaseActivity;
-import com.alen.runoob.greendao.bean.Category;
-import com.alen.runoob.greendao.bean.Item;
-import com.alen.runoob.greendao.gen.CategoryDao;
+import com.alen.runoob.greendao.bean.GithubCollect;
+import com.alen.runoob.greendao.bean.RunoobCategory;
+import com.alen.runoob.greendao.bean.RunoobItem;
+import com.alen.runoob.greendao.gen.RunoobCategoryDao;
 import com.alen.runoob.greendao.gen.DaoSession;
-import com.alen.runoob.greendao.gen.ItemDao;
+import com.alen.runoob.greendao.gen.RunoobItemDao;
 import com.alen.runoob.rx.ApiManager;
 import com.alen.runoob.rx.MyObserver;
 import com.hanks.htextview.HTextView;
@@ -34,6 +34,15 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void loadServer() {
         long startTime = SystemClock.currentThreadTimeMillis();
+
+        Logger.d("测试");
+
+        ApiManager.getObGithub(new MyObserver<List<GithubCollect>>() {
+            @Override
+            public void onNext(List<GithubCollect> datas) {
+                Logger.d(datas);
+            }
+        });
 
         saveCache();
 
@@ -59,20 +68,20 @@ public class SplashActivity extends BaseActivity {
      */
     private void saveCache() {
         final DaoSession daoSession = App.daoMaster.newSession();
-        final ItemDao itemDao = daoSession.getItemDao();
-        final CategoryDao categoryDao = daoSession.getCategoryDao();
+        final RunoobItemDao itemDao = daoSession.getRunoobItemDao();
+        final RunoobCategoryDao categoryDao = daoSession.getRunoobCategoryDao();
         if (categoryDao.queryBuilder().list().size() != 0) {
             return;
         }
 
-        ApiManager.getObCategory(new MyObserver<List<Category>>() {
+        ApiManager.getObCategory(new MyObserver<List<RunoobCategory>>() {
             @Override
-            public void onNext(List<Category> categories) {
+            public void onNext(List<RunoobCategory> categories) {
                 categoryDao.insertInTx(categories);
-                for (Category categroy : categories) {
-                    for (Item item : categroy.getItem()) {
-                        item.setCategroyId(categroy.getId());
-                        itemDao.insert(item);
+                for (RunoobCategory categroy : categories) {
+                    for (RunoobItem runoobItem : categroy.getRunoobItem()) {
+                        runoobItem.setCategroyId(categroy.getId());
+                        itemDao.insert(runoobItem);
                     }
                 }
             }

@@ -9,7 +9,7 @@ import org.greenrobot.greendao.annotation.Generated;
  * Created by Jeff on 2016/5/23.
  */
 @Entity
-public class Chapter {
+public class RunoobChapter {
 
     @Id
     private Long id;
@@ -33,27 +33,27 @@ public class Chapter {
         this.link = link;
     }
 
-    public Chapter(String title, String link) {
+    public RunoobChapter(String title, String link) {
         super();
         this.title = title;
         this.link = link;
     }
 
-    @Generated(hash = 1223163661)
-    public Chapter(Long id, String title, String link, Long itemId) {
+    @Generated(hash = 1043888901)
+    public RunoobChapter(Long id, String title, String link, Long itemId) {
         this.id = id;
         this.title = title;
         this.link = link;
         this.itemId = itemId;
     }
 
-    @Generated(hash = 393170288)
-    public Chapter() {
+    @Generated(hash = 858249302)
+    public RunoobChapter() {
     }
 
     @Override
     public String toString() {
-        return "Chapter [title=" + title + ", link=" + link + "]";
+        return "RunoobChapter [title=" + title + ", link=" + link + "]";
     }
 
     public Long getId() {

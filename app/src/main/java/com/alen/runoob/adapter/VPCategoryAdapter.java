@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import com.alen.runoob.R;
 import com.alen.runoob.activity.ChapterActivity;
-import com.alen.runoob.greendao.bean.Category;
-import com.alen.runoob.greendao.bean.Item;
+import com.alen.runoob.greendao.bean.RunoobCategory;
+import com.alen.runoob.greendao.bean.RunoobItem;
 import com.alen.runoob.listenter.OnItemClickListener;
 import com.alen.runoob.utils.CircularAnim;
 import com.bumptech.glide.Glide;
@@ -24,9 +24,9 @@ import java.util.List;
 public class VPCategoryAdapter extends PagerAdapter {
 
     private Activity context;
-    private List<Category> datas;
+    private List<RunoobCategory> datas;
 
-    public VPCategoryAdapter(Activity context, List<Category> datas) {
+    public VPCategoryAdapter(Activity context, List<RunoobCategory> datas) {
         this.context = context;
         this.datas = datas;
     }
@@ -58,15 +58,15 @@ public class VPCategoryAdapter extends PagerAdapter {
                 }
             }
         });
-        final List<Item> items = datas.get(position).getItem();
+        final List<RunoobItem> runoobItems = datas.get(position).getRunoobItem();
         v.setLayoutManager(new GridLayoutManager(context, 1));
-        RVCategoryAdapter adapter = new RVCategoryAdapter(items, context);
+        RVCategoryAdapter adapter = new RVCategoryAdapter(runoobItems, context);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
-                String link = items.get(position).getLink();
-                String title = items.get(position).getTitle();
-                Long id = items.get(position).getId();
+                String link = runoobItems.get(position).getLink();
+                String title = runoobItems.get(position).getTitle();
+                Long id = runoobItems.get(position).getId();
                 Intent intent = new Intent(context, ChapterActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);

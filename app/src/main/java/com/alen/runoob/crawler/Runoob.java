@@ -1,9 +1,8 @@
-package com.alen.runoob.runoob;
+package com.alen.runoob.crawler;
 
-import com.alen.runoob.greendao.bean.Category;
-import com.alen.runoob.greendao.bean.Chapter;
-import com.alen.runoob.greendao.bean.Item;
-import com.orhanobut.logger.Logger;
+import com.alen.runoob.greendao.bean.RunoobCategory;
+import com.alen.runoob.greendao.bean.RunoobChapter;
+import com.alen.runoob.greendao.bean.RunoobItem;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,12 +25,12 @@ public class Runoob {
      *
      * @return
      */
-    public static ArrayList<Category> getCategorys() {
-        ArrayList<Category> codeList = null;
+    public static ArrayList<RunoobCategory> getCategorys() {
+        ArrayList<RunoobCategory> codeList = null;
 
         try {
-            Document doc = Jsoup.connect("http://www.runoob.com/").get();
-            codeList = new ArrayList<Category>();
+            Document doc = Jsoup.connect(RootUrl).get();
+            codeList = new ArrayList<RunoobCategory>();
             Elements middles = doc.getElementsByClass("middle-column-home");
             for (Element cates : middles) {
                 Elements codes = cates.getElementsByClass("codelist-desktop");
@@ -39,17 +38,17 @@ public class Runoob {
                     Elements code = element.getElementsByTag("h2");
                     String t_cate_title = code.text();
                     Elements items = element.getElementsByClass("item-1");
-                    ArrayList<Item> c_Items = new ArrayList<>();
+                    ArrayList<RunoobItem> c_Runoob_Items = new ArrayList<>();
                     for (Element item : items) {
                         Elements item_title = item.getElementsByTag("h4");
                         String t_item_title = item_title.text();
                         String t_item_link = item.attr("href");
                         String t_item_des = item.getElementsByTag("strong").text();
                         String t_item_image = item.getElementsByTag("img").get(0).attr("src");
-                        Item item1 = new Item(t_item_title, t_item_image, t_item_link, t_item_des);
-                        c_Items.add(item1);
+                        RunoobItem runoobItem1 = new RunoobItem(t_item_title, t_item_image, t_item_link, t_item_des);
+                        c_Runoob_Items.add(runoobItem1);
                     }
-                    codeList.add(new Category(t_cate_title, c_Items));
+                    codeList.add(new RunoobCategory(t_cate_title, c_Runoob_Items));
                 }
             }
             return codeList;
@@ -62,9 +61,9 @@ public class Runoob {
     /**
      * 获取章节
      */
-    public static ArrayList<Chapter> getChapter(String url) {
+    public static ArrayList<RunoobChapter> getChapter(String url) {
         try {
-            ArrayList<Chapter> chapters = new ArrayList<>();
+            ArrayList<RunoobChapter> runoobChapters = new ArrayList<>();
             Document doc = Jsoup.connect(url).get();
             Elements tops = doc.getElementsByAttributeValue("target", "_top");
             for (Element top : tops) {
@@ -79,9 +78,9 @@ public class Runoob {
                         link = RootUrl + "/" + link;
                     }
                 }
-                chapters.add(new Chapter(title, link));
+                runoobChapters.add(new RunoobChapter(title, link));
             }
-            return chapters;
+            return runoobChapters;
         } catch (IOException e) {
             e.printStackTrace();
         }

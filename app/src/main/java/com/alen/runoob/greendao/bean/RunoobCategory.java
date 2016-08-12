@@ -1,57 +1,55 @@
 package com.alen.runoob.greendao.bean;
 
-import com.alen.runoob.greendao.gen.CategoryDao;
-import com.alen.runoob.greendao.gen.DaoSession;
-import com.alen.runoob.greendao.gen.ItemDao;
-
-import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.DaoException;
+import com.alen.runoob.greendao.gen.DaoSession;
+import com.alen.runoob.greendao.gen.RunoobCategoryDao;
+import com.alen.runoob.greendao.gen.RunoobItemDao;
 
 /**
  * 获取分类
  * Created by Jeff on 2016/5/23.
  */
 @Entity
-public class Category {
+public class RunoobCategory {
     @Id
     private Long id;
 
     private String title;
     @ToMany(referencedJoinProperty = "categroyId")
-    private List<Item> item;
+    private List<RunoobItem> runoobItem;
 
     /** Used for active entity operations. */
-    @Generated(hash = 40161530)
-    private transient CategoryDao myDao;
+    @Generated(hash = 1185788285)
+    private transient RunoobCategoryDao myDao;
 
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
 
-    public Category(String title, List<Item> item) {
-        super();
-        this.title = title;
-        this.item = item;
-    }
-
-    @Generated(hash = 206903207)
-    public Category(Long id, String title) {
+    @Generated(hash = 170471397)
+    public RunoobCategory(Long id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    @Generated(hash = 1150634039)
-    public Category() {
+    public RunoobCategory(String title, List<RunoobItem> runoobItem) {
+        this.title = title;
+        this.runoobItem = runoobItem;
+    }
+
+    @Generated(hash = 839713230)
+    public RunoobCategory() {
     }
 
     @Override
     public String toString() {
-        return "Category [title=" + title + ", item=" + item + "]";
+        return "RunoobCategory [title=" + title + ", runoobItem=" + runoobItem + "]";
     }
 
     /**
@@ -91,38 +89,38 @@ public class Category {
     }
 
     /** Resets a to-many relationship, making the next get call to query for a fresh result. */
-    @Generated(hash = 488856272)
-    public synchronized void resetItem() {
-        item = null;
+    @Generated(hash = 891056255)
+    public synchronized void resetRunoobItem() {
+        runoobItem = null;
     }
 
     /**
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
      */
-    @Generated(hash = 784641744)
-    public List<Item> getItem() {
-        if (item == null) {
+    @Generated(hash = 1549947286)
+    public List<RunoobItem> getRunoobItem() {
+        if (runoobItem == null) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
                 throw new DaoException("Entity is detached from DAO context");
             }
-            ItemDao targetDao = daoSession.getItemDao();
-            List<Item> itemNew = targetDao._queryCategory_Item(id);
+            RunoobItemDao targetDao = daoSession.getRunoobItemDao();
+            List<RunoobItem> runoobItemNew = targetDao._queryRunoobCategory_RunoobItem(id);
             synchronized (this) {
-                if(item == null) {
-                    item = itemNew;
+                if(runoobItem == null) {
+                    runoobItem = runoobItemNew;
                 }
             }
         }
-        return item;
+        return runoobItem;
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 503476761)
+    @Generated(hash = 482658309)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getCategoryDao() : null;
+        myDao = daoSession != null ? daoSession.getRunoobCategoryDao() : null;
     }
 
     public String getTitle() {
