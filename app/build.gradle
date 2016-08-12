@@ -44,4 +44,5 @@ dependencies {
     compile 'org.greenrobot:greendao-generator:3.0.0'
     compile 'com.github.ybq:Android-SpinKit:1.0.5'
     compile 'hanks.xyz:htextview-library:0.1.5'
+    compile 'com.orhanobut:logger:1.15'
 }

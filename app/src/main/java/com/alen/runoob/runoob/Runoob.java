@@ -3,6 +3,7 @@ package com.alen.runoob.runoob;
 import com.alen.runoob.greendao.bean.Category;
 import com.alen.runoob.greendao.bean.Chapter;
 import com.alen.runoob.greendao.bean.Item;
+import com.orhanobut.logger.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,7 +46,8 @@ public class Runoob {
                         String t_item_link = item.attr("href");
                         String t_item_des = item.getElementsByTag("strong").text();
                         String t_item_image = item.getElementsByTag("img").get(0).attr("src");
-                        c_Items.add(new Item(t_item_title, t_item_image, t_item_link, t_item_des));
+                        Item item1 = new Item(t_item_title, t_item_image, t_item_link, t_item_des);
+                        c_Items.add(item1);
                     }
                     codeList.add(new Category(t_cate_title, c_Items));
                 }

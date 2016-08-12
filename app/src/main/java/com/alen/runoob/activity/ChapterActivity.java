@@ -18,7 +18,9 @@ import com.alen.runoob.listenter.OnItemClickListener;
 import com.alen.runoob.rx.ApiManager;
 import com.alen.runoob.rx.MyObserver;
 import com.alen.runoob.utils.CircularAnim;
+import com.orhanobut.logger.Logger;
 
+import java.net.URL;
 import java.util.List;
 
 public class ChapterActivity extends BaseActivity {
@@ -44,6 +46,7 @@ public class ChapterActivity extends BaseActivity {
 
         List<Chapter> chapters = chapterDao.queryBuilder()
                 .where(ChapterDao.Properties.ItemId.eq(id)).orderAsc(ChapterDao.Properties.Id).list();
+        Logger.d(chapters);
         if (chapters.size() != 0) {
             setData(chapters);
         } else {
@@ -68,6 +71,7 @@ public class ChapterActivity extends BaseActivity {
                 Intent intent = new Intent(ChapterActivity.this, DetailActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);
+                Logger.d(title + ":" + link);
                 CircularAnim.startActivity(ChapterActivity.this, intent, v, R.color.colorPrimary);
             }
         });

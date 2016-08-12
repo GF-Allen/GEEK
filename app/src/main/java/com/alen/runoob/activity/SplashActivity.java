@@ -3,6 +3,7 @@ package com.alen.runoob.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 
 import com.alen.runoob.App;
 import com.alen.runoob.R;
@@ -15,6 +16,7 @@ import com.alen.runoob.greendao.gen.ItemDao;
 import com.alen.runoob.rx.ApiManager;
 import com.alen.runoob.rx.MyObserver;
 import com.hanks.htextview.HTextView;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -39,13 +41,13 @@ public class SplashActivity extends BaseActivity {
         long d = endTime - startTime;
 
         if (d > 2000) {
-            startActivity(new Intent(SplashActivity.this, CategoryActivity.class));
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(SplashActivity.this, CategoryActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
                 }
             }, 2000 - d);

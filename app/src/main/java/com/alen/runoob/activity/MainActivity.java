@@ -16,7 +16,7 @@ import com.alen.runoob.greendao.gen.DaoSession;
 
 import java.util.List;
 
-public class CategoryActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private TabLayout tabs;
@@ -24,7 +24,7 @@ public class CategoryActivity extends BaseActivity {
 
     @Override
     public void initWidget() {
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_main);
         toolbar = findView(R.id.toolbar);
         tabs = findView(R.id.tabs);
         vpCategory = findView(R.id.vp_category);
@@ -39,12 +39,12 @@ public class CategoryActivity extends BaseActivity {
         CategoryDao categoryDao = daoSession.getCategoryDao();
         List<Category> categories = categoryDao.queryBuilder().list();
 
-        vpCategory.setAdapter(new VPCategoryAdapter(CategoryActivity.this, categories));
+        vpCategory.setAdapter(new VPCategoryAdapter(MainActivity.this, categories));
         tabs.setupWithViewPager(vpCategory);
 //        ApiManager.getObCategory(new MyObserver<List<Category>>() {
 //            @Override
 //            public void onNext(List<Category> categories) {
-//                vpCategory.setAdapter(new VPCategoryAdapter(CategoryActivity.this, categories));
+//                vpCategory.setAdapter(new VPCategoryAdapter(MainActivity.this, categories));
 //                tabs.setupWithViewPager(vpCategory);
 //            }
 //        });
