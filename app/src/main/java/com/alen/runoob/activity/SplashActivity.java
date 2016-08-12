@@ -3,6 +3,7 @@ package com.alen.runoob.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.View;
 
 import com.alen.runoob.App;
 import com.alen.runoob.R;
@@ -28,6 +29,9 @@ public class SplashActivity extends BaseActivity {
     public void initWidget() {
         setContentView(R.layout.activity_splash);
         text = findView(R.id.text);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
         text.animateText("爱生活，爱编程");
     }
 
