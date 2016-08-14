@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  * 获取菜鸟教程的相关项
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 public class Runoob {
 
@@ -42,7 +42,7 @@ public class Runoob {
                     for (Element item : items) {
                         Elements item_title = item.getElementsByTag("h4");
                         String t_item_title = item_title.text();
-                        String t_item_link = item.attr("href");
+                        String t_item_link = item.attr("abs:href");
                         String t_item_des = item.getElementsByTag("strong").text();
                         String t_item_image = item.getElementsByTag("img").get(0).attr("src");
                         RunoobItem runoobItem1 = new RunoobItem(t_item_title, t_item_image, t_item_link, t_item_des);
@@ -68,17 +68,7 @@ public class Runoob {
             Elements tops = doc.getElementsByAttributeValue("target", "_top");
             for (Element top : tops) {
                 String title = top.text();
-                String link = top.attr("abs:href");
-//                String link = top.attr("href");
-//                //处理格式问题
-//                String start = link.substring(0, 1);
-//                if (!link.contains("http://")) {
-//                    if ("/".equals(start)) {
-//                        link = RootUrl + link;
-//                    } else {
-//                        link = RootUrl + "/" + link;
-//                    }
-//                }
+                String link = top.attr("abs:href");//获取绝对路径
                 runoobChapters.add(new RunoobChapter(title, link));
             }
             return runoobChapters;

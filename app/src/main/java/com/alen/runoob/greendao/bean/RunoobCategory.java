@@ -1,19 +1,20 @@
 package com.alen.runoob.greendao.bean;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.ToMany;
-
-import java.util.List;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.DaoException;
 import com.alen.runoob.greendao.gen.DaoSession;
 import com.alen.runoob.greendao.gen.RunoobCategoryDao;
 import com.alen.runoob.greendao.gen.RunoobItemDao;
 
+import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToMany;
+
+import java.util.List;
+
 /**
  * 获取分类
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 @Entity
 public class RunoobCategory {

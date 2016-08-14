@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 
 /**
  * 网络工具类
- * Created by Jeff on 2016/5/24.
+ * Created by AlenBeyond on 2016/5/24.
  */
 public class NetUtils {
     /**

@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 /**
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.ViewHolder> {
 

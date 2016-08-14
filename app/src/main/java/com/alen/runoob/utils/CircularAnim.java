@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 /**
- * Created by Jeff on 2016/7/26.
+ * Created by AlenBeyond on 2016/7/26.
  */
 public class CircularAnim {
 

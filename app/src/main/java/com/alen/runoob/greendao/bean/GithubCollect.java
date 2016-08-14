@@ -1,7 +1,7 @@
 package com.alen.runoob.greendao.bean;
 
 /**
- * Created by Alen on 2016/8/12.
+ * Created by AlenBeyond on 2016/8/12.
  */
 public class GithubCollect {
     private String title;

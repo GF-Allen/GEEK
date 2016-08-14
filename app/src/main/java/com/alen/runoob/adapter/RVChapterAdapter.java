@@ -13,7 +13,7 @@ import com.alen.runoob.listenter.OnItemClickListener;
 import java.util.List;
 
 /**
- * Created by Jeff on 2016/5/24.
+ * Created by AlenBeyond on 2016/5/24.
  */
 public class RVChapterAdapter extends RecyclerView.Adapter<RVChapterAdapter.Viewholder> {
 

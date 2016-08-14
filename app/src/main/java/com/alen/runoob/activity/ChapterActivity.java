@@ -11,7 +11,6 @@ import com.alen.runoob.App;
 import com.alen.runoob.R;
 import com.alen.runoob.activity.base.BaseActivity;
 import com.alen.runoob.adapter.RVChapterAdapter;
-import com.alen.runoob.crawler.Runoob;
 import com.alen.runoob.greendao.bean.RunoobChapter;
 import com.alen.runoob.greendao.gen.DaoSession;
 import com.alen.runoob.greendao.gen.RunoobChapterDao;

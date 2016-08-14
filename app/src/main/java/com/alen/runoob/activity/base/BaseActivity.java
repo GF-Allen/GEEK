@@ -10,7 +10,7 @@ import com.alen.runoob.utils.NetUtils;
 import com.alen.runoob.utils.UiUtils;
 
 /**
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     @Override

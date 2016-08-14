@@ -6,7 +6,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 获取章节
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 @Entity
 public class RunoobChapter {

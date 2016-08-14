@@ -1,7 +1,7 @@
 package com.alen.runoob.js;
 
 /**
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 public class Js {
 

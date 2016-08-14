@@ -11,7 +11,7 @@ import com.alen.runoob.R;
 
 /**
  * 具有Toolbar的Activity
- * Created by Jeff on 2016/5/23.
+ * Created by AlenBeyond on 2016/5/23.
  */
 public abstract class BaseToolbarActivity extends BaseActivity {
 

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.alen.runoob.greendao.gen.DaoMaster;
 
 /**
- * Created by Jeff on 2016/8/5.
+ * Created by AlenBeyond on 2016/8/5.
  */
 public class DBManager {
     private final static String dbName = "runoob.db";

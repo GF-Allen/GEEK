@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 /**
- * Created by Alen on 2016/3/22.
+ * Created by AlenBeyond on 2016/3/22.
  */
 public class UiUtils {
 
