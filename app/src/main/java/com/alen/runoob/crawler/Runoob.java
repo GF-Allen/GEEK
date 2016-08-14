@@ -68,16 +68,17 @@ public class Runoob {
             Elements tops = doc.getElementsByAttributeValue("target", "_top");
             for (Element top : tops) {
                 String title = top.text();
-                String link = top.attr("href");
-                //处理格式问题
-                String start = link.substring(0, 1);
-                if (!link.contains("http://")) {
-                    if ("/".equals(start)) {
-                        link = RootUrl + link;
-                    } else {
-                        link = RootUrl + "/" + link;
-                    }
-                }
+                String link = top.attr("abs:href");
+//                String link = top.attr("href");
+//                //处理格式问题
+//                String start = link.substring(0, 1);
+//                if (!link.contains("http://")) {
+//                    if ("/".equals(start)) {
+//                        link = RootUrl + link;
+//                    } else {
+//                        link = RootUrl + "/" + link;
+//                    }
+//                }
                 runoobChapters.add(new RunoobChapter(title, link));
             }
             return runoobChapters;
