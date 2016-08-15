@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.alen.runoob.activity.TestActivity">
+    tools:context="com.alenbeyond.runoob.activity.TestActivity">
 
     <us.feras.mdv.MarkdownView
         android:id="@+id/markdownView"

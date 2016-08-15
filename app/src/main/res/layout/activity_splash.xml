@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/splash_bg"
     android:fitsSystemWindows="false"
-    tools:context="com.alen.runoob.activity.SplashActivity">
+    tools:context="com.alenbeyond.runoob.activity.SplashActivity">
 
     <com.hanks.htextview.HTextView
         android:id="@+id/text"
