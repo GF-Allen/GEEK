@@ -16,7 +16,7 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
-    protected void loadServer() {
+    protected void loadData() {
         markdownView.loadMarkdownFile("https://raw.githubusercontent.com/XiqingLiu/CollectSourceCode/master/ListView.md");
     }
 }

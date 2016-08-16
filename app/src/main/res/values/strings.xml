@@ -2,4 +2,8 @@
     <string name="app_name">Geek</string>
     <string name="title_activity_category">CategoryActivity</string>
     <string name="title_activity_chapter">ChapterActivity</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+    <string name="nav_runoob">编程教程</string>
+    <string name="nav_online_coding">在线编程</string>
 </resources>

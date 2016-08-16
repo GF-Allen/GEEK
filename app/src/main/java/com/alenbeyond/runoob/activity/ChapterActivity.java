@@ -11,6 +11,7 @@ import com.alenbeyond.runoob.App;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.adapter.RVChapterAdapter;
+import com.alenbeyond.runoob.constant.WebType;
 import com.alenbeyond.runoob.greendao.bean.RunoobChapter;
 import com.alenbeyond.runoob.greendao.gen.DaoSession;
 import com.alenbeyond.runoob.greendao.gen.RunoobChapterDao;
@@ -37,7 +38,7 @@ public class ChapterActivity extends BaseActivity {
     }
 
     @Override
-    protected void loadServer() {
+    protected void loadData() {
         DaoSession daoSession = App.daoMaster.newSession();
         chapterDao = daoSession.getRunoobChapterDao();
         String url = getIntent().getStringExtra("url");
@@ -67,9 +68,10 @@ public class ChapterActivity extends BaseActivity {
             public void onItemClickListener(View v, int position) {
                 String link = runoobChapters.get(position).getLink();
                 String title = runoobChapters.get(position).getTitle();
-                Intent intent = new Intent(ChapterActivity.this, DetailActivity.class);
+                Intent intent = new Intent(ChapterActivity.this, WebActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);
+                intent.putExtra("type", WebType.WEB_DETAIL);
                 Logger.d(title + ":" + link);
                 CircularAnim.startActivity(ChapterActivity.this, intent, v, R.color.colorPrimary);
             }

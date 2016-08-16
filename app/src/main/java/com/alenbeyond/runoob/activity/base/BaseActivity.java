@@ -42,7 +42,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      **/
     public void initData() {
         if (NetUtils.isOnline(this)) {
-            loadServer();
+            loadData();
         } else {
             Snackbar.make(UiUtils.getRootView(this), "请检查网络", Snackbar.LENGTH_INDEFINITE).setAction("重试", new View.OnClickListener() {
                 @Override
@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     /**
      * 加载数据
      */
-    protected void loadServer() {
+    protected void loadData() {
 
     }
 

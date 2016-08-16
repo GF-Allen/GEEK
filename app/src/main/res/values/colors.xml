@@ -9,4 +9,5 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="super_light_grey">#cfd8dc</color>
+    <color name="webview_bg">#F0F0F0</color>
 </resources>

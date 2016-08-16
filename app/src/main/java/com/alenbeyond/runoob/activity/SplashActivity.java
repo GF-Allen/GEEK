@@ -8,6 +8,8 @@ import android.view.View;
 import com.alenbeyond.runoob.App;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
+import com.alenbeyond.runoob.constant.Constants;
+import com.alenbeyond.runoob.constant.WebType;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobItem;
@@ -36,10 +38,8 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    protected void loadServer() {
+    protected void loadData() {
         long startTime = SystemClock.currentThreadTimeMillis();
-
-        Logger.d("测试");
 
         ApiManager.getObGithub(new MyObserver<List<GithubCollect>>() {
             @Override
@@ -54,13 +54,15 @@ public class SplashActivity extends BaseActivity {
         long d = endTime - startTime;
 
         if (d > 2000) {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
             finish();
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }, 2000 - d);
