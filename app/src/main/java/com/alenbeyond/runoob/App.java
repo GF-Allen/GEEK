@@ -3,6 +3,7 @@ package com.alenbeyond.runoob;
 import android.app.Application;
 
 import com.alenbeyond.runoob.greendao.gen.DaoMaster;
+import com.lzy.okhttputils.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -22,6 +23,7 @@ public class App extends Application {
     }
 
     private void init() {
+        OkHttpUtils.init(this);
         Logger.init(TAG);
     }
 }

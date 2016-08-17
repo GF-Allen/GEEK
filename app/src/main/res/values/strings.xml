@@ -6,4 +6,5 @@
     <string name="drawer_close">关闭</string>
     <string name="nav_runoob">编程教程</string>
     <string name="nav_online_coding">在线编程</string>
+    <string name="nav_resource">编程资源</string>
 </resources>

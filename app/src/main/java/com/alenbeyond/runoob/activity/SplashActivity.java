@@ -1,15 +1,18 @@
 package com.alenbeyond.runoob.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 
 import com.alenbeyond.runoob.App;
+import com.alenbeyond.runoob.BuildConfig;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.constant.Constants;
 import com.alenbeyond.runoob.constant.WebType;
+import com.alenbeyond.runoob.greendao.bean.AnyCodesPDF;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobItem;
@@ -18,12 +21,15 @@ import com.alenbeyond.runoob.greendao.gen.DaoSession;
 import com.alenbeyond.runoob.greendao.gen.RunoobItemDao;
 import com.alenbeyond.runoob.rx.ApiManager;
 import com.alenbeyond.runoob.rx.MyObserver;
+import com.alenbeyond.runoob.utils.UiUtils;
 import com.hanks.htextview.HTextView;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
 public class SplashActivity extends BaseActivity {
+
+    public static final int TIME_OUT = 3 * 1000;
 
     private HTextView text;
 
@@ -35,6 +41,22 @@ public class SplashActivity extends BaseActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
         text.animateText("爱生活，爱编程");
+        if (BuildConfig.DEBUG) {
+            UiUtils.showToast(this, "测试版");
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    startActivity(new Intent(SplashActivity.this, TestActivity.class));
+                    ApiManager.getObAnycodesPdf(new MyObserver<List<AnyCodesPDF>>() {
+                        @Override
+                        public void onNext(List<AnyCodesPDF> anyCodesPDFs) {
+                            Logger.d("size:" + anyCodesPDFs.size());
+                            Logger.d(anyCodesPDFs);
+                        }
+                    });
+                }
+            });
+        }
     }
 
     @Override
@@ -53,7 +75,7 @@ public class SplashActivity extends BaseActivity {
         long endTime = SystemClock.currentThreadTimeMillis();
         long d = endTime - startTime;
 
-        if (d > 2000) {
+        if (d > TIME_OUT) {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -65,7 +87,7 @@ public class SplashActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 2000 - d);
+            }, TIME_OUT - d);
         }
     }
 

@@ -4,28 +4,18 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.alenbeyond.runoob.App;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
-import com.alenbeyond.runoob.adapter.VPCategoryAdapter;
 import com.alenbeyond.runoob.fragment.OnlineCodingFragment;
 import com.alenbeyond.runoob.fragment.RunoobFragment;
-import com.alenbeyond.runoob.fragment.base.BaseFragment;
-import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
-import com.alenbeyond.runoob.greendao.gen.RunoobCategoryDao;
-import com.alenbeyond.runoob.greendao.gen.DaoSession;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

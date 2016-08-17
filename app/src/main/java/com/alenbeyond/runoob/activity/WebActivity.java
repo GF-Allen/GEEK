@@ -1,5 +1,7 @@
 package com.alenbeyond.runoob.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +21,8 @@ import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.constant.WebType;
 import com.alenbeyond.runoob.js.Js;
 import com.alenbeyond.runoob.utils.NetUtils;
+import com.alenbeyond.runoob.utils.ReflectUtils;
+import com.alenbeyond.runoob.utils.UiUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -52,6 +57,19 @@ public class WebActivity extends BaseActivity {
         getIntentData();
         mHandler = new MyHandler(this);
         mToolbar.setTitle(title);
+        mToolbar.setLogo(new ColorDrawable(Color.TRANSPARENT));
+        try {
+            ImageView mLogoView = (ImageView) ReflectUtils.getField(mToolbar, mToolbar.getClass().getName(), "mLogoView");
+            mLogoView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+            ReflectUtils.setField(mToolbar, mToolbar.getClass().getName(), "mLogoView", mLogoView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mWebView.setWebChromeClient(new MyWebChromeClient());
@@ -107,6 +125,8 @@ public class WebActivity extends BaseActivity {
 
         if (mWebView.canGoBack()) {
             mWebView.goBack();
+            mToolbar.setLogo(R.mipmap.close);
+            mToolbar.setTitle("  "+mToolbar.getTitle());
             if (type == WebType.WEB_DETAIL) {
                 mWebView.setVisibility(View.INVISIBLE);
             }

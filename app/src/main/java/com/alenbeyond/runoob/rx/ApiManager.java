@@ -1,6 +1,8 @@
 package com.alenbeyond.runoob.rx;
 
+import com.alenbeyond.runoob.crawler.Anycodes;
 import com.alenbeyond.runoob.crawler.Github;
+import com.alenbeyond.runoob.greendao.bean.AnyCodesPDF;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobChapter;
@@ -62,6 +64,17 @@ public class ApiManager {
             @Override
             public List<GithubCollect> call() throws Exception {
                 return Github.getCollectMD();
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    public static void getObAnycodesPdf(Observer<List<AnyCodesPDF>> subscribe) {
+        Observable.fromCallable(new Callable<List<AnyCodesPDF>>() {
+            @Override
+            public List<AnyCodesPDF> call() throws Exception {
+                return Anycodes.getPDFResource("http://study.anycodes.cn/index.php?mod=folder&sid=18oOe3", 1);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

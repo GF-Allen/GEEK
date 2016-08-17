@@ -7,8 +7,8 @@
             android:id="@+id/nav_online_coding"
             android:title="@string/nav_online_coding" />
         <item
-            android:id="@+id/nav_friends"
-            android:title="Friends" />
+            android:id="@+id/nav_resource"
+            android:title="@string/nav_resource" />
         <item
             android:id="@+id/nav_discussion"
             android:title="Discussion" />
