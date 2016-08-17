@@ -54,6 +54,7 @@ public class WebActivity extends BaseActivity {
     public void initWidget() {
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
+        setStatusTranslucent();
         getIntentData();
         mHandler = new MyHandler(this);
         mToolbar.setTitle(title);
@@ -126,7 +127,7 @@ public class WebActivity extends BaseActivity {
         if (mWebView.canGoBack()) {
             mWebView.goBack();
             mToolbar.setLogo(R.mipmap.close);
-            mToolbar.setTitle("  "+mToolbar.getTitle());
+            mToolbar.setTitle("  " + mToolbar.getTitle());
             if (type == WebType.WEB_DETAIL) {
                 mWebView.setVisibility(View.INVISIBLE);
             }

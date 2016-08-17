@@ -35,6 +35,7 @@ public class ChapterActivity extends BaseActivity {
         setContentView(R.layout.activity_chapter);
         toolbar = findView(R.id.toolbar);
         rvChapter = findView(R.id.rv_chapter);
+        setStatusTranslucent();
     }
 
     @Override

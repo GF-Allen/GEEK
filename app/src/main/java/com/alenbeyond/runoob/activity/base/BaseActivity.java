@@ -23,11 +23,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initWidget();
+        setListener();
+        initData();
+    }
+
+    public <T extends View> T findView(@IdRes int id) {
+        return (T) findViewById(id);
+    }
+
+    public void setStatusTranslucent() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             // 创建TextView,为了设置StatusBar的颜色
             TextView textView = new TextView(this);
             LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -38,13 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             ViewGroup view = (ViewGroup) getWindow().getDecorView();
             view.addView(textView);
         }
-        initWidget();
-        setListener();
-        initData();
-    }
-
-    public <T extends View> T findView(@IdRes int id) {
-        return (T) findViewById(id);
     }
 
     /**
