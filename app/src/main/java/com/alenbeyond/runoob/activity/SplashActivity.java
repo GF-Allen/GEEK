@@ -1,7 +1,6 @@
 package com.alenbeyond.runoob.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
@@ -10,14 +9,12 @@ import com.alenbeyond.runoob.App;
 import com.alenbeyond.runoob.BuildConfig;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
-import com.alenbeyond.runoob.constant.Constants;
-import com.alenbeyond.runoob.constant.WebType;
 import com.alenbeyond.runoob.greendao.bean.AnyCodesPDF;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobItem;
-import com.alenbeyond.runoob.greendao.gen.RunoobCategoryDao;
 import com.alenbeyond.runoob.greendao.gen.DaoSession;
+import com.alenbeyond.runoob.greendao.gen.RunoobCategoryDao;
 import com.alenbeyond.runoob.greendao.gen.RunoobItemDao;
 import com.alenbeyond.runoob.rx.ApiManager;
 import com.alenbeyond.runoob.rx.MyObserver;
@@ -60,7 +57,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    protected void loadData() {
+    public void initData() {
         long startTime = SystemClock.currentThreadTimeMillis();
 
         ApiManager.getObGithub(new MyObserver<List<GithubCollect>>() {

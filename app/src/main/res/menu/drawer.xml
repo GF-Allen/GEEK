@@ -1,22 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/menu_content"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_runoob"
+            android:icon="@mipmap/drawer_notes"
             android:title="@string/nav_runoob" />
         <item
             android:id="@+id/nav_online_coding"
+            android:icon="@mipmap/drawer_notes"
             android:title="@string/nav_online_coding" />
         <item
             android:id="@+id/nav_resource"
+            android:icon="@mipmap/drawer_notes"
             android:title="@string/nav_resource" />
         <item
-            android:id="@+id/nav_discussion"
-            android:title="Discussion" />
+            android:id="@+id/nav_note"
+            android:icon="@mipmap/drawer_notes"
+            android:title="@string/nav_note" />
     </group>
-    <item android:title="Sub items">
-        <menu>
-            <item android:title="Sub item 1" />
-            <item android:title="Sub item 2" />
-        </menu>
-    </item>
+    <group android:id="@+id/menu_general">
+        <item android:title="@string/nav_skins" />
+        <item android:title="@string/nav_about" />
+        <item android:title="@string/nav_setting" />
+    </group>
 </menu>

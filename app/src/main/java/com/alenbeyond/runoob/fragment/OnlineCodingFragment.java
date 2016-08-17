@@ -1,11 +1,16 @@
 package com.alenbeyond.runoob.fragment;
 
+import android.os.Handler;
+import android.os.Message;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.constant.Constants;
@@ -22,8 +27,14 @@ public class OnlineCodingFragment extends BaseFragment {
     WebView mWebView;
     @BindView(R.id.ll_web_net_not_available)
     LinearLayout mNetNotAvailable;
+    @BindView(R.id.tv_net_info)
+    TextView tvNetInfo;
     @BindView(R.id.progressBar_web)
     ProgressBar mProgressBar;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout refreshLayout;
+
+    private Handler mHandler;
 
     @Override
     protected View setContentView() {
@@ -32,6 +43,34 @@ public class OnlineCodingFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 0:
+                        Snackbar.make(mWebView, "网络不稳定", Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                initData();
+                            }
+                        }).setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
+                        break;
+                    case 1:
+                        refreshLayout.setRefreshing(false);
+                        break;
+                }
+            }
+        };
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData();
+                mHandler.sendEmptyMessageDelayed(1, 3 * 1000);
+            }
+        });
+
         mWebView.setWebChromeClient(new MyWebChromeClient());
         mWebView.requestFocus(View.FOCUS_DOWN);
         WebSettings setting = mWebView.getSettings();
@@ -44,7 +83,7 @@ public class OnlineCodingFragment extends BaseFragment {
         mNetNotAvailable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadData();
+                initData();
             }
         });
     }
@@ -52,6 +91,7 @@ public class OnlineCodingFragment extends BaseFragment {
     @Override
     protected void loadData() {
         mWebView.loadUrl(Constants.URL_ONLINE_CODING);
+        mHandler.sendEmptyMessageDelayed(0, 5 * 1000);
     }
 
     /**
@@ -72,5 +112,12 @@ public class OnlineCodingFragment extends BaseFragment {
             mProgressBar.postInvalidate();
             super.onProgressChanged(view, newProgress);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
     }
 }

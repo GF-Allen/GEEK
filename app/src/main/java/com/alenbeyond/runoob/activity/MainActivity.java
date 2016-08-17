@@ -28,8 +28,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     Toolbar mToolbar;
     @BindView(R.id.tabs)
     public TabLayout mTabs;
-    //    @BindView(R.id.vp_category)
-//    ViewPager mVpCategory;
     @BindView(R.id.navigation_view)
     NavigationView mNavigationView;
     private RunoobFragment runoobFragment;
@@ -57,6 +55,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void loadData() {
         runoobFragment = new RunoobFragment(this);
         switchFragment(null, runoobFragment);
+        mNavigationView.getMenu().findItem(R.id.nav_runoob).setChecked(true);
 //        DaoSession daoSession = App.daoMaster.newSession();
 //        RunoobCategoryDao categoryDao = daoSession.getRunoobCategoryDao();
 //        List<RunoobCategory> categories = categoryDao.queryBuilder().list();
@@ -101,6 +100,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 switchFragment(currentFragment, runoobFragment);
                 mToolbar.setTitle(getResources().getString(R.string.nav_runoob));
+                item.setChecked(true);
                 break;
             case R.id.nav_online_coding:
                 mTabs.setVisibility(View.GONE);
@@ -109,6 +109,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 switchFragment(currentFragment, onlineCodingFragment);
                 mToolbar.setTitle(getResources().getString(R.string.nav_online_coding));
+                item.setChecked(true);
                 break;
         }
         return false;
