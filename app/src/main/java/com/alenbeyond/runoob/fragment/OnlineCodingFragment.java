@@ -1,9 +1,10 @@
 package com.alenbeyond.runoob.fragment;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -31,8 +32,6 @@ public class OnlineCodingFragment extends BaseFragment {
     TextView tvNetInfo;
     @BindView(R.id.progressBar_web)
     ProgressBar mProgressBar;
-    @BindView(R.id.refresh_layout)
-    SwipeRefreshLayout refreshLayout;
 
     private Handler mHandler;
 
@@ -41,6 +40,7 @@ public class OnlineCodingFragment extends BaseFragment {
         return View.inflate(getContext(), R.layout.fragment_online_coding, null);
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void initView() {
 
@@ -56,20 +56,9 @@ public class OnlineCodingFragment extends BaseFragment {
                             }
                         }).setActionTextColor(getResources().getColor(R.color.colorAccent)).show();
                         break;
-                    case 1:
-                        refreshLayout.setRefreshing(false);
-                        break;
                 }
             }
         };
-
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                initData();
-                mHandler.sendEmptyMessageDelayed(1, 3 * 1000);
-            }
-        });
 
         mWebView.setWebChromeClient(new MyWebChromeClient());
         mWebView.requestFocus(View.FOCUS_DOWN);
