@@ -20,9 +20,7 @@ import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.constant.WebType;
 import com.alenbeyond.runoob.js.Js;
-import com.alenbeyond.runoob.utils.NetUtils;
 import com.alenbeyond.runoob.utils.ReflectUtils;
-import com.alenbeyond.runoob.utils.UiUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -103,7 +101,7 @@ public class WebActivity extends BaseActivity {
         mWebView.loadUrl(url);
         if (type == WebType.WEB_DETAIL) {
             mWebView.setVisibility(View.INVISIBLE);
-            mHandler.sendEmptyMessageDelayed(HANDLER_TIMEOUT, 5 * 1000);
+            mHandler.sendEmptyMessageDelayed(HANDLER_TIMEOUT, 10 * 1000);
         }
     }
 

@@ -3,7 +3,7 @@ package com.alenbeyond.runoob.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +59,7 @@ public class VPCategoryAdapter extends PagerAdapter {
             }
         });
         final List<RunoobItem> runoobItems = datas.get(position).getRunoobItem();
-        v.setLayoutManager(new GridLayoutManager(context, 1));
+        v.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         RVCategoryAdapter adapter = new RVCategoryAdapter(runoobItems, context);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override

@@ -1,7 +1,7 @@
 package com.alenbeyond.runoob.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -62,8 +62,8 @@ public class ChapterActivity extends BaseActivity {
     }
 
     private void setData(final List<RunoobChapter> runoobChapters) {
-        rvChapter.setLayoutManager(new GridLayoutManager(ChapterActivity.this, 1));
-        RVChapterAdapter adapter = new RVChapterAdapter(ChapterActivity.this, runoobChapters);
+        rvChapter.setLayoutManager(new LinearLayoutManager(ChapterActivity.this, LinearLayoutManager.VERTICAL,false));
+        RVChapterAdapter adapter = new RVChapterAdapter(runoobChapters, ChapterActivity.this);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {

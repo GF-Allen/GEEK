@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.fragment.OnlineCodingFragment;
+import com.alenbeyond.runoob.fragment.ResourceFragment;
 import com.alenbeyond.runoob.fragment.RunoobFragment;
 
 import butterknife.BindView;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private RunoobFragment runoobFragment;
     private Fragment currentFragment;//当前显示的
     private OnlineCodingFragment onlineCodingFragment;
+    private ResourceFragment resourceFragment;
 
     @Override
     public void initWidget() {
@@ -109,6 +111,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 switchFragment(currentFragment, onlineCodingFragment);
                 mToolbar.setTitle(getResources().getString(R.string.nav_online_coding));
+                item.setChecked(true);
+                break;
+            case R.id.nav_resource:
+                mTabs.setVisibility(View.GONE);
+                if (resourceFragment == null) {
+                    resourceFragment = new ResourceFragment();
+                }
+                switchFragment(currentFragment, resourceFragment);
+                mToolbar.setTitle(getResources().getString(R.string.nav_resource));
                 item.setChecked(true);
                 break;
         }

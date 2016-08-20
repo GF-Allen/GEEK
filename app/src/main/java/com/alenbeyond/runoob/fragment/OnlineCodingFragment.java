@@ -69,7 +69,7 @@ public class OnlineCodingFragment extends BaseFragment {
         setting.setUseWideViewPort(true);
         setting.setLoadWithOverviewMode(true);
 
-        mNetNotAvailable.setOnClickListener(new View.OnClickListener() {
+        mNetNotAvailable.setOnClickListener(new View.OnClickListener() {    
             @Override
             public void onClick(View view) {
                 initData();
