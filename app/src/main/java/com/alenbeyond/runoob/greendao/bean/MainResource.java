@@ -7,13 +7,15 @@ public class MainResource {
 
     private int drawableID;
     private String title;
+    private String url;
 
     public MainResource() {
     }
 
-    public MainResource(int drawableID, String title) {
+    public MainResource(int drawableID, String title, String url) {
         this.drawableID = drawableID;
         this.title = title;
+        this.url = url;
     }
 
     public int getDrawableID() {
@@ -32,11 +34,20 @@ public class MainResource {
         this.title = title;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "MainResource{" +
                 "drawableID=" + drawableID +
                 ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

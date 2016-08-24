@@ -62,13 +62,13 @@ public class ChapterActivity extends BaseActivity {
     }
 
     private void setData(final List<RunoobChapter> runoobChapters) {
-        rvChapter.setLayoutManager(new LinearLayoutManager(ChapterActivity.this, LinearLayoutManager.VERTICAL,false));
+        rvChapter.setLayoutManager(new LinearLayoutManager(ChapterActivity.this, LinearLayoutManager.VERTICAL, false));
         RVChapterAdapter adapter = new RVChapterAdapter(runoobChapters, ChapterActivity.this);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener<RunoobChapter>() {
             @Override
-            public void onItemClickListener(View v, int position) {
-                String link = runoobChapters.get(position).getLink();
-                String title = runoobChapters.get(position).getTitle();
+            public void onItemClickListener(View v, int position, RunoobChapter data) {
+                String link = data.getLink();
+                String title = data.getTitle();
                 Intent intent = new Intent(ChapterActivity.this, WebActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);

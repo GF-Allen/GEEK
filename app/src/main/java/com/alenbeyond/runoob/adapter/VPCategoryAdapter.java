@@ -61,12 +61,12 @@ public class VPCategoryAdapter extends PagerAdapter {
         final List<RunoobItem> runoobItems = datas.get(position).getRunoobItem();
         v.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         RVCategoryAdapter adapter = new RVCategoryAdapter(runoobItems, context);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener<RunoobItem>() {
             @Override
-            public void onItemClickListener(View v, int position) {
-                String link = runoobItems.get(position).getLink();
-                String title = runoobItems.get(position).getTitle();
-                Long id = runoobItems.get(position).getId();
+            public void onItemClickListener(View v, int position, RunoobItem data) {
+                String link = data.getLink();
+                String title = data.getTitle();
+                Long id = data.getId();
                 Intent intent = new Intent(context, ChapterActivity.class);
                 intent.putExtra("url", link);
                 intent.putExtra("title", title);

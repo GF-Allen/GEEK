@@ -32,6 +32,10 @@ public class WebActivity extends BaseActivity {
     private static final int HANDLER_FINISH = 0;
     private static final int HANDLER_TIMEOUT = 1;
 
+    public static final String INTENT_TITLE = "title";
+    public static final String INTENT_URL = "url";
+    public static final String INTENT_TYPE = "type";
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.ll_web_net_not_available)
@@ -91,9 +95,9 @@ public class WebActivity extends BaseActivity {
     }
 
     private void getIntentData() {
-        url = getIntent().getStringExtra("url");
-        title = getIntent().getStringExtra("title");
-        type = getIntent().getIntExtra("type", WebType.WEB_COMMON);
+        url = getIntent().getStringExtra(INTENT_URL);
+        title = getIntent().getStringExtra(INTENT_TITLE);
+        type = getIntent().getIntExtra(INTENT_TYPE, WebType.WEB_COMMON);
     }
 
     @Override

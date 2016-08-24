@@ -57,7 +57,7 @@ public abstract class BaseRecyclerAdapter<T, B extends BaseViewHolder> extends R
             holder.mRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListener.onItemClickListener(view, position);
+                    onItemClickListener.onItemClickListener(view, position, datas.get(position));
                 }
             });
         }
@@ -71,9 +71,9 @@ public abstract class BaseRecyclerAdapter<T, B extends BaseViewHolder> extends R
         return datas.size();
     }
 
-    protected OnItemClickListener onItemClickListener;
+    protected OnItemClickListener<T> onItemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 }
