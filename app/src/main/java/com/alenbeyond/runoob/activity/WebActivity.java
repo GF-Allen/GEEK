@@ -5,7 +5,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -27,7 +26,7 @@ import java.lang.ref.WeakReference;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WebActivity extends BaseActivity {
+public class WebActivity extends BaseActivity implements BaseActivity.OnClickBackListener {
 
     private static final int HANDLER_FINISH = 0;
     private static final int HANDLER_TIMEOUT = 1;
@@ -56,6 +55,9 @@ public class WebActivity extends BaseActivity {
     public void initWidget() {
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
+
+        setOnClickBackListener(this);
+
         setStatusTranslucent();
         mHandler = new MyHandler(this);
         mToolbar.setTitle(title);
@@ -77,6 +79,8 @@ public class WebActivity extends BaseActivity {
         mWebView.setWebChromeClient(new MyWebChromeClient());
         if (type == WebType.WEB_DETAIL) {
             mWebView.setWebViewClient(new DetailWebViewClient());
+        } else {
+            mWebView.setWebViewClient(new CommonWebViewClient());
         }
         WebSettings setting = mWebView.getSettings();
         setting.setJavaScriptEnabled(true);
@@ -109,25 +113,15 @@ public class WebActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * 在有上一页的时候返回上一页
      */
     @Override
     public void onBackPressed() {
-
         if (mWebView.canGoBack()) {
             mWebView.goBack();
+            mWebView.getUrl();
             mToolbar.setLogo(R.mipmap.close);
             mToolbar.setTitle("  " + mToolbar.getTitle());
             if (type == WebType.WEB_DETAIL) {
@@ -136,6 +130,11 @@ public class WebActivity extends BaseActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onClickBackListener() {
+        onBackPressed();
     }
 
     /**
@@ -160,6 +159,15 @@ public class WebActivity extends BaseActivity {
             super.onProgressChanged(view, newProgress);
         }
     }
+
+    private class CommonWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
+
 
     private class DetailWebViewClient extends WebViewClient {
         @Override

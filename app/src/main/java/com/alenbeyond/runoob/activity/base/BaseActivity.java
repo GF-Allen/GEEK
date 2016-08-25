@@ -81,8 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     private OnClickBackListener listener;
 
-    interface OnClickBackListener {
-
+    public interface OnClickBackListener {
         void onClickBackListener();
     }
     /**

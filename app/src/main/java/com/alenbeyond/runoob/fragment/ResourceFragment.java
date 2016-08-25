@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.ReRxJavaActivity;
-import com.alenbeyond.runoob.activity.ReRxJavaAllActivity;
 import com.alenbeyond.runoob.activity.WebActivity;
 import com.alenbeyond.runoob.adapter.RVResourceAdapter;
+import com.alenbeyond.runoob.constant.Constants;
 import com.alenbeyond.runoob.fragment.base.BaseFragment;
 import com.alenbeyond.runoob.greendao.bean.MainResource;
 import com.alenbeyond.runoob.listenter.OnItemClickListener;
@@ -81,7 +81,8 @@ public class ResourceFragment extends BaseFragment {
         ArrayList<MainResource> datas = new ArrayList<>();
 
         datas.add(new MainResource(R.mipmap.ic_launcher, "在线阅读", "", TYPE_ONLINE_READER));
-        datas.add(new MainResource(R.mipmap.ic_launcher, "在线测试", "", TYPE_ONLINE_TEST));
+
+        datas.add(new MainResource(R.mipmap.ic_launcher, "在线测试", Constants.URL_ONLIE_TEST, TYPE_URL));
         datas.add(new MainResource(R.mipmap.ic_launcher, "RxJava", "", TYPE_RXJAVA));
         datas.add(new MainResource(R.mipmap.ic_launcher, "3333333", "", ""));
         datas.add(new MainResource(R.mipmap.ic_launcher, "4444444", "", ""));
