@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -23,6 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getIntentData();
         initWidget();
         setListener();
         initData();
@@ -46,6 +49,57 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             ViewGroup view = (ViewGroup) getWindow().getDecorView();
             view.addView(textView);
         }
+    }
+
+    /**
+     * 初始化ToolBar
+     * @param title
+     * @param isBack
+     */
+    public void initToolBar(String title, boolean isBack) {
+        Toolbar toolbar = findView(R.id.toolbar);
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
+        if (isBack) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (listener != null) {
+                    listener.onClickBackListener();
+                } else {
+                    finish();//默认关闭当前Activity
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private OnClickBackListener listener;
+
+    interface OnClickBackListener {
+
+        void onClickBackListener();
+    }
+    /**
+     * 设置返回按钮的事件监听
+     *
+     * @param listener
+     */
+    public void setOnClickBackListener(OnClickBackListener listener) {
+        this.listener = listener;
+    }
+
+
+    /**
+     * 获取Intent数据
+     */
+    protected void getIntentData() {
+
     }
 
     /**

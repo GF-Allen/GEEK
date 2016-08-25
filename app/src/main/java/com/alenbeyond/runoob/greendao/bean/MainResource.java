@@ -8,14 +8,16 @@ public class MainResource {
     private int drawableID;
     private String title;
     private String url;
+    private String type;
 
     public MainResource() {
     }
 
-    public MainResource(int drawableID, String title, String url) {
+    public MainResource(int drawableID, String title, String url, String type) {
         this.drawableID = drawableID;
         this.title = title;
         this.url = url;
+        this.type = type;
     }
 
     public int getDrawableID() {
@@ -42,12 +44,21 @@ public class MainResource {
         this.url = url;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "MainResource{" +
                 "drawableID=" + drawableID +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

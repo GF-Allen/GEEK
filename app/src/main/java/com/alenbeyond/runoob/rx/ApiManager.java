@@ -7,6 +7,9 @@ import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobChapter;
 import com.alenbeyond.runoob.crawler.Runoob;
+import com.alenbeyond.runoob.resource.rxjava.bean.AllOperators;
+import com.alenbeyond.runoob.resource.rxjava.bean.Operators;
+import com.alenbeyond.runoob.resource.rxjava.data.RxJavaDataUtils;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -75,6 +78,28 @@ public class ApiManager {
             @Override
             public List<AnyCodesPDF> call() throws Exception {
                 return Anycodes.getPDFResource("http://study.anycodes.cn/index.php?mod=folder&sid=18oOe3", 1);
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    public static void getObRxJavaAll(Observer<List<AllOperators>> subscribe) {
+        Observable.fromCallable(new Callable<List<AllOperators>>() {
+            @Override
+            public List<AllOperators> call() throws Exception {
+                return RxJavaDataUtils.getAllOperators();
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    public static void getObRxOperators(Observer<List<Operators>> subscribe) {
+        Observable.fromCallable(new Callable<List<Operators>>() {
+            @Override
+            public List<Operators> call() throws Exception {
+                return RxJavaDataUtils.getOperators();
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

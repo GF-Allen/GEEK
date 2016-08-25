@@ -13,9 +13,11 @@ import com.alenbeyond.runoob.greendao.bean.AnyCodesPDF;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobItem;
+import com.alenbeyond.runoob.greendao.gen.AllOperatorsDao;
 import com.alenbeyond.runoob.greendao.gen.DaoSession;
 import com.alenbeyond.runoob.greendao.gen.RunoobCategoryDao;
 import com.alenbeyond.runoob.greendao.gen.RunoobItemDao;
+import com.alenbeyond.runoob.resource.rxjava.bean.AllOperators;
 import com.alenbeyond.runoob.rx.ApiManager;
 import com.alenbeyond.runoob.rx.MyObserver;
 import com.alenbeyond.runoob.utils.UiUtils;
@@ -60,12 +62,12 @@ public class SplashActivity extends BaseActivity {
     public void initData() {
         long startTime = SystemClock.currentThreadTimeMillis();
 
-        ApiManager.getObGithub(new MyObserver<List<GithubCollect>>() {
-            @Override
-            public void onNext(List<GithubCollect> datas) {
-                Logger.d(datas);
-            }
-        });
+//        ApiManager.getObGithub(new MyObserver<List<GithubCollect>>() {
+//            @Override
+//            public void onNext(List<GithubCollect> datas) {
+//                Logger.d(datas);
+//            }
+//        });
 
         saveCache();
 
@@ -95,21 +97,31 @@ public class SplashActivity extends BaseActivity {
         final DaoSession daoSession = App.daoMaster.newSession();
         final RunoobItemDao itemDao = daoSession.getRunoobItemDao();
         final RunoobCategoryDao categoryDao = daoSession.getRunoobCategoryDao();
-        if (categoryDao.queryBuilder().list().size() != 0) {
-            return;
-        }
+        final AllOperatorsDao operatorsDao = daoSession.getAllOperatorsDao();
 
-        ApiManager.getObCategory(new MyObserver<List<RunoobCategory>>() {
-            @Override
-            public void onNext(List<RunoobCategory> categories) {
-                categoryDao.insertInTx(categories);
-                for (RunoobCategory categroy : categories) {
-                    for (RunoobItem runoobItem : categroy.getRunoobItem()) {
-                        runoobItem.setCategroyId(categroy.getId());
-                        itemDao.insert(runoobItem);
+        if (categoryDao.queryBuilder().list().size() == 0) {
+            ApiManager.getObCategory(new MyObserver<List<RunoobCategory>>() {
+                @Override
+                public void onNext(List<RunoobCategory> categories) {
+                    categoryDao.insertInTx(categories);
+                    for (RunoobCategory categroy : categories) {
+                        for (RunoobItem runoobItem : categroy.getRunoobItem()) {
+                            runoobItem.setCategroyId(categroy.getId());
+                            itemDao.insert(runoobItem);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
+
+        if (operatorsDao.queryBuilder().list().size() == 0) {
+            ApiManager.getObRxJavaAll(new MyObserver<List<AllOperators>>() {
+                @Override
+                public void onNext(List<AllOperators> allOperatorses) {
+                    operatorsDao.insertInTx(allOperatorses);
+                }
+            });
+        }
+
     }
 }

@@ -24,6 +24,7 @@ public class DaoMaster extends AbstractDaoMaster {
         RunoobCategoryDao.createTable(db, ifNotExists);
         RunoobChapterDao.createTable(db, ifNotExists);
         RunoobItemDao.createTable(db, ifNotExists);
+        AllOperatorsDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -31,6 +32,7 @@ public class DaoMaster extends AbstractDaoMaster {
         RunoobCategoryDao.dropTable(db, ifExists);
         RunoobChapterDao.dropTable(db, ifExists);
         RunoobItemDao.dropTable(db, ifExists);
+        AllOperatorsDao.dropTable(db, ifExists);
     }
 
     /**
@@ -52,6 +54,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(RunoobCategoryDao.class);
         registerDaoClass(RunoobChapterDao.class);
         registerDaoClass(RunoobItemDao.class);
+        registerDaoClass(AllOperatorsDao.class);
     }
 
     public DaoSession newSession() {

@@ -57,7 +57,6 @@ public class WebActivity extends BaseActivity {
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
         setStatusTranslucent();
-        getIntentData();
         mHandler = new MyHandler(this);
         mToolbar.setTitle(title);
         mToolbar.setLogo(new ColorDrawable(Color.TRANSPARENT));
@@ -94,7 +93,8 @@ public class WebActivity extends BaseActivity {
         });
     }
 
-    private void getIntentData() {
+    @Override
+    protected void getIntentData() {
         url = getIntent().getStringExtra(INTENT_URL);
         title = getIntent().getStringExtra(INTENT_TITLE);
         type = getIntent().getIntExtra(INTENT_TYPE, WebType.WEB_COMMON);
