@@ -1,7 +1,7 @@
 package com.alenbeyond.runoob.resource.rxjava.data;
 
 public class CommonString {
-    public static final String SPLASH_INDEX_URL = "https://raw.githubusercontent.com/XiqingLiu/GEEK/master/app/src/main/res/mipmap-hdpi/drawer_header.png";
+    public static final String SPLASH_INDEX_URL = "https://raw.githubusercontent.com/XiqingLiu/GEEK/master/app/src/main/res/mipmap-hdpi/rx_java.png";
     public static final String GITHUB_URL = "https://github.com/mcxiaoke/RxJavaApp";
     public static final String OBSERVABLES = "https://github.com/mcxiaoke/RxDocs/raw/master/images/legend.png";
     public static final String SUBJECT = "https://github.com/mcxiaoke/RxDocs/raw/master/images/S.AsyncSubject.png";
