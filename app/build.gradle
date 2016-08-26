@@ -47,4 +47,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.github.barteksc:android-pdf-viewer:2.0.1'
     compile 'com.lzy.net:okhttputils:+'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.zaihuishou:expandablerecycleradapter:1.0.2'
 }

@@ -31,7 +31,8 @@
         <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.WebActivity" />
         <activity android:name=".activity.ReRxJavaAllActivity" />
-        <activity android:name=".activity.ReRxJavaActivity"></activity>
+        <activity android:name=".activity.ReRxJavaActivity" />
+        <activity android:name=".activity.PdfResourceActivity"></activity>
     </application>
 
 </manifest>

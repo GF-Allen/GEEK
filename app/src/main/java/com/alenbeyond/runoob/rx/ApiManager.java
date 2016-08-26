@@ -7,6 +7,8 @@ import com.alenbeyond.runoob.greendao.bean.GithubCollect;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobChapter;
 import com.alenbeyond.runoob.crawler.Runoob;
+import com.alenbeyond.runoob.resource.pdf.bean.PdfResource;
+import com.alenbeyond.runoob.resource.pdf.data.PdfResourceUtils;
 import com.alenbeyond.runoob.resource.rxjava.bean.AllOperators;
 import com.alenbeyond.runoob.resource.rxjava.bean.Operators;
 import com.alenbeyond.runoob.resource.rxjava.data.RxJavaDataUtils;
@@ -100,6 +102,17 @@ public class ApiManager {
             @Override
             public List<Operators> call() throws Exception {
                 return RxJavaDataUtils.getOperators();
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    public static void getObPdfResources(Observer<List<PdfResource>> subscribe) {
+        Observable.fromCallable(new Callable<List<PdfResource>>() {
+            @Override
+            public List<PdfResource> call() throws Exception {
+                return PdfResourceUtils.getPdfData();
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

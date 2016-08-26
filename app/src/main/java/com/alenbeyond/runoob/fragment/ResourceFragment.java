@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.alenbeyond.runoob.R;
+import com.alenbeyond.runoob.activity.PdfResourceActivity;
 import com.alenbeyond.runoob.activity.ReRxJavaActivity;
 import com.alenbeyond.runoob.activity.WebActivity;
 import com.alenbeyond.runoob.adapter.RVResourceAdapter;
@@ -72,6 +73,9 @@ public class ResourceFragment extends BaseFragment {
                 break;
             case TYPE_RXJAVA:
                 startActivity(new Intent(getContext(), ReRxJavaActivity.class).putExtra("title", data.getTitle()));
+                break;
+            case TYPE_ONLINE_READER:
+                startActivity(new Intent(getContext(), PdfResourceActivity.class).putExtra("title", data.getTitle()));
                 break;
         }
     }
