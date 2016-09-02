@@ -25,6 +25,8 @@ public class DaoMaster extends AbstractDaoMaster {
         RunoobChapterDao.createTable(db, ifNotExists);
         RunoobItemDao.createTable(db, ifNotExists);
         AllOperatorsDao.createTable(db, ifNotExists);
+        RNApiGroupDao.createTable(db, ifNotExists);
+        RNApiSubDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -33,6 +35,8 @@ public class DaoMaster extends AbstractDaoMaster {
         RunoobChapterDao.dropTable(db, ifExists);
         RunoobItemDao.dropTable(db, ifExists);
         AllOperatorsDao.dropTable(db, ifExists);
+        RNApiGroupDao.dropTable(db, ifExists);
+        RNApiSubDao.dropTable(db, ifExists);
     }
 
     /**
@@ -55,6 +59,8 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(RunoobChapterDao.class);
         registerDaoClass(RunoobItemDao.class);
         registerDaoClass(AllOperatorsDao.class);
+        registerDaoClass(RNApiGroupDao.class);
+        registerDaoClass(RNApiSubDao.class);
     }
 
     public DaoSession newSession() {

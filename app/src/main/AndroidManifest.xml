@@ -32,7 +32,8 @@
         <activity android:name=".activity.WebActivity" />
         <activity android:name=".activity.ReRxJavaAllActivity" />
         <activity android:name=".activity.ReRxJavaActivity" />
-        <activity android:name=".activity.PdfResourceActivity"></activity>
+        <activity android:name=".activity.PdfResourceActivity" />
+        <activity android:name=".activity.ReactNativeActivity"></activity>
     </application>
 
 </manifest>

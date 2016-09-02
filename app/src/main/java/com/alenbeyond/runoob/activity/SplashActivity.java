@@ -11,10 +11,13 @@ import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.greendao.bean.AnyCodesPDF;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
+import com.alenbeyond.runoob.greendao.bean.RNApiGroup;
+import com.alenbeyond.runoob.greendao.bean.RNApiSub;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobItem;
 import com.alenbeyond.runoob.greendao.gen.AllOperatorsDao;
 import com.alenbeyond.runoob.greendao.gen.DaoSession;
+import com.alenbeyond.runoob.greendao.gen.RNApiGroupDao;
 import com.alenbeyond.runoob.greendao.gen.RunoobCategoryDao;
 import com.alenbeyond.runoob.greendao.gen.RunoobItemDao;
 import com.alenbeyond.runoob.resource.rxjava.bean.AllOperators;
@@ -46,13 +49,13 @@ public class SplashActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
 //                    startActivity(new Intent(SplashActivity.this, TestActivity.class));
-                    ApiManager.getObAnycodesPdf(new MyObserver<List<AnyCodesPDF>>() {
-                        @Override
-                        public void onNext(List<AnyCodesPDF> anyCodesPDFs) {
-                            Logger.d("size:" + anyCodesPDFs.size());
-                            Logger.d(anyCodesPDFs);
-                        }
-                    });
+//                    ApiManager.getObAnycodesPdf(new MyObserver<List<AnyCodesPDF>>() {
+//                        @Override
+//                        public void onNext(List<AnyCodesPDF> anyCodesPDFs) {
+//                            Logger.d("size:" + anyCodesPDFs.size());
+//                            Logger.d(anyCodesPDFs);
+//                        }
+//                    });
                 }
             });
         }
@@ -98,6 +101,7 @@ public class SplashActivity extends BaseActivity {
         final RunoobItemDao itemDao = daoSession.getRunoobItemDao();
         final RunoobCategoryDao categoryDao = daoSession.getRunoobCategoryDao();
         final AllOperatorsDao operatorsDao = daoSession.getAllOperatorsDao();
+        final RNApiGroupDao rnApiGroupDao = daoSession.getRNApiGroupDao();
 
         if (categoryDao.queryBuilder().list().size() == 0) {
             ApiManager.getObCategory(new MyObserver<List<RunoobCategory>>() {
@@ -119,6 +123,15 @@ public class SplashActivity extends BaseActivity {
                 @Override
                 public void onNext(List<AllOperators> allOperatorses) {
                     operatorsDao.insertInTx(allOperatorses);
+                }
+            });
+        }
+
+        if (rnApiGroupDao.queryBuilder().list().size() == 0) {
+            ApiManager.getObRNApiGroup(new MyObserver<List<RNApiGroup>>() {
+                @Override
+                public void onNext(List<RNApiGroup> rnApiGroups) {
+                    rnApiGroupDao.insertInTx(rnApiGroups);
                 }
             });
         }

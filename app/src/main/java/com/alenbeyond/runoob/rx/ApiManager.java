@@ -2,8 +2,11 @@ package com.alenbeyond.runoob.rx;
 
 import com.alenbeyond.runoob.crawler.Anycodes;
 import com.alenbeyond.runoob.crawler.Github;
+import com.alenbeyond.runoob.crawler.ReactNative;
 import com.alenbeyond.runoob.greendao.bean.AnyCodesPDF;
 import com.alenbeyond.runoob.greendao.bean.GithubCollect;
+import com.alenbeyond.runoob.greendao.bean.RNApiGroup;
+import com.alenbeyond.runoob.greendao.bean.RNApiSub;
 import com.alenbeyond.runoob.greendao.bean.RunoobCategory;
 import com.alenbeyond.runoob.greendao.bean.RunoobChapter;
 import com.alenbeyond.runoob.crawler.Runoob;
@@ -118,4 +121,39 @@ public class ApiManager {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscribe);
     }
+
+    /**
+     * ReactNative获取分组
+     *
+     * @param subscribe
+     */
+    public static void getObRNApiGroup(Observer<List<RNApiGroup>> subscribe) {
+        Observable.fromCallable(new Callable<List<RNApiGroup>>() {
+            @Override
+            public List<RNApiGroup> call() throws Exception {
+                return ReactNative.getApiGroup();
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    /**
+     * ReactNative根据分组获取小分类
+     *
+     * @param groupId
+     * @param subscribe
+     */
+    public static void getObRNApiSub(final int groupId, Observer<List<RNApiSub>> subscribe) {
+        Observable.fromCallable(new Callable<List<RNApiSub>>() {
+            @Override
+            public List<RNApiSub> call() throws Exception {
+                return ReactNative.getApiSub(groupId + "");
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+
 }

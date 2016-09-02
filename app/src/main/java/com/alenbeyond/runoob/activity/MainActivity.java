@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void loadData() {
-        runoobFragment = new RunoobFragment(this);
+        runoobFragment = new RunoobFragment();
         switchFragment(null, runoobFragment);
         mNavigationView.getMenu().findItem(R.id.nav_runoob).setChecked(true);
 //        DaoSession daoSession = App.daoMaster.newSession();
@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_runoob:
                 mTabs.setVisibility(View.VISIBLE);
                 if (runoobFragment == null) {
-                    runoobFragment = new RunoobFragment(this);
+                    runoobFragment = new RunoobFragment();
                 }
                 switchFragment(currentFragment, runoobFragment);
                 mToolbar.setTitle(getResources().getString(R.string.nav_runoob));

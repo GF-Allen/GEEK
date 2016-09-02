@@ -23,18 +23,12 @@ import butterknife.BindView;
  */
 public class RunoobFragment extends BaseFragment {
 
-    private Activity mActivity;
-
-    public RunoobFragment(Activity mActivity) {
-        this.mActivity = mActivity;
-    }
-
     @BindView(R.id.vp_category)
     ViewPager mVpCategory;
 
     @Override
     protected View setContentView() {
-        return View.inflate(mActivity, R.layout.fragment_runoob, null);
+        return View.inflate(getContext(), R.layout.fragment_runoob, null);
     }
 
     @Override
@@ -43,8 +37,8 @@ public class RunoobFragment extends BaseFragment {
         RunoobCategoryDao categoryDao = daoSession.getRunoobCategoryDao();
         List<RunoobCategory> categories = categoryDao.queryBuilder().list();
 
-        mVpCategory.setAdapter(new VPCategoryAdapter(mActivity, categories));
-        MainActivity m = (MainActivity) mActivity;
+        mVpCategory.setAdapter(new VPCategoryAdapter(getActivity(), categories));
+        MainActivity m = (MainActivity) getActivity();
         m.mTabs.setupWithViewPager(mVpCategory);
     }
 }
