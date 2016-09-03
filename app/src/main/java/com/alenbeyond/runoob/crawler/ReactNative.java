@@ -1,10 +1,7 @@
 package com.alenbeyond.runoob.crawler;
 
-import android.util.Log;
-
 import com.alenbeyond.runoob.greendao.bean.RNApiGroup;
 import com.alenbeyond.runoob.greendao.bean.RNApiSub;
-import com.orhanobut.logger.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,8 +22,8 @@ public class ReactNative {
     public static final String ROOT_URL = "http://reactnative.cn/docs/0.31/getting-started.html";
 
     public static List<RNApiGroup> getApiGroup() {
+        ArrayList<RNApiGroup> datas = new ArrayList<>();
         try {
-            ArrayList<RNApiGroup> datas = new ArrayList<>();
             Document document = Jsoup.connect(ROOT_URL).get();
             Element apiGroupsUl = document.getElementsByAttributeValue("data-reactid", "94").get(0);
             Elements apiGroups = apiGroupsUl.getElementsByClass("apiGroup");
@@ -39,16 +36,15 @@ public class ReactNative {
                 }
                 datas.add(new RNApiGroup(Integer.parseInt(reactId), name));
             }
-            return datas;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return datas;
     }
 
     public static List<RNApiSub> getApiSub(String groupId) {
+        ArrayList<RNApiSub> datas = new ArrayList<>();
         try {
-            ArrayList<RNApiSub> datas = new ArrayList<>();
             Document document = Jsoup.connect(ROOT_URL).get();
             Element apiGroup = document.getElementsByAttributeValue("data-reactid", groupId).get(0);
             Element apiSub = apiGroup.getElementsByClass("apiSub").get(0);
@@ -60,11 +56,9 @@ public class ReactNative {
                 String url = element.attr("abs:href");
                 datas.add(new RNApiSub(Integer.parseInt(reactId), name, url, Long.parseLong(groupId)));
             }
-            return datas;
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return datas;
     }
 }

@@ -15,9 +15,9 @@
             android:icon="@mipmap/drawer_notes"
             android:title="@string/nav_resource" />
         <item
-            android:id="@+id/nav_note"
+            android:id="@+id/nav_react"
             android:icon="@mipmap/drawer_notes"
-            android:title="@string/nav_note" />
+            android:title="@string/nav_react" />
     </group>
     <group android:id="@+id/menu_general">
         <item android:title="@string/nav_skins" />

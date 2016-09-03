@@ -1,5 +1,9 @@
 package com.alenbeyond.runoob.activity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,13 +14,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.base.BaseActivity;
 import com.alenbeyond.runoob.fragment.OnlineCodingFragment;
+import com.alenbeyond.runoob.fragment.ReactFragment;
 import com.alenbeyond.runoob.fragment.ResourceFragment;
 import com.alenbeyond.runoob.fragment.RunoobFragment;
+import com.alenbeyond.runoob.utils.BitmapUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +43,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Fragment currentFragment;//当前显示的
     private OnlineCodingFragment onlineCodingFragment;
     private ResourceFragment resourceFragment;
+    private ReactFragment reactFragment;
 
     @Override
     public void initWidget() {
@@ -51,6 +60,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //设置导航栏NavigationView的点击事件
         mNavigationView.setNavigationItemSelectedListener(this);
+        View headerView = mNavigationView.getHeaderView(0);
+        ImageView ivAvatar = (ImageView) headerView.findViewById(R.id.iv_avatar);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.drawer_avatar);
+        Drawable drawable = BitmapUtils.createCircularDrawable(this, bitmap);
+        ivAvatar.setImageDrawable(drawable);
+        LinearLayout llAvatar = (LinearLayout) headerView.findViewById(R.id.ll_avatar);
+        llAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WebActivity.class);
+                intent.putExtra(WebActivity.INTENT_TITLE, "");
+                intent.putExtra(WebActivity.INTENT_URL, "https://github.com/XiqingLiu");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -99,6 +123,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 mTabs.setVisibility(View.VISIBLE);
                 if (runoobFragment == null) {
                     runoobFragment = new RunoobFragment();
+                } else {
+                    runoobFragment.setupTabs();
                 }
                 switchFragment(currentFragment, runoobFragment);
                 mToolbar.setTitle(getResources().getString(R.string.nav_runoob));
@@ -120,6 +146,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 switchFragment(currentFragment, resourceFragment);
                 mToolbar.setTitle(getResources().getString(R.string.nav_resource));
+                item.setChecked(true);
+                break;
+            case R.id.nav_react:
+                mTabs.setVisibility(View.VISIBLE);
+                if (reactFragment == null) {
+                    reactFragment = new ReactFragment();
+                } else {
+                    reactFragment.setupTabs();
+                }
+                switchFragment(currentFragment, reactFragment);
+                mToolbar.setTitle(R.string.nav_react);
                 item.setChecked(true);
                 break;
         }

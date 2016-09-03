@@ -8,7 +8,6 @@ import android.view.View;
 import com.alenbeyond.runoob.R;
 import com.alenbeyond.runoob.activity.PdfResourceActivity;
 import com.alenbeyond.runoob.activity.ReRxJavaActivity;
-import com.alenbeyond.runoob.activity.ReactNativeActivity;
 import com.alenbeyond.runoob.activity.WebActivity;
 import com.alenbeyond.runoob.adapter.RVResourceAdapter;
 import com.alenbeyond.runoob.constant.Constants;
@@ -42,10 +41,6 @@ public class ResourceFragment extends BaseFragment {
      */
     public static final String TYPE_RXJAVA = "type_rxjava";
 
-    /**
-     * React Native
-     */
-    public static final String TYPE_REACT_NATIVE = "type_react_native";
 
     @BindView(R.id.rv_resource)
     RecyclerView mRvResource;
@@ -83,9 +78,6 @@ public class ResourceFragment extends BaseFragment {
             case TYPE_ONLINE_READER:
                 startActivity(new Intent(getContext(), PdfResourceActivity.class).putExtra("title", data.getTitle()));
                 break;
-            case TYPE_REACT_NATIVE:
-                startActivity(new Intent(getContext(), ReactNativeActivity.class).putExtra("title", data.getTitle()));
-                break;
         }
     }
 
@@ -98,8 +90,6 @@ public class ResourceFragment extends BaseFragment {
         datas.add(new MainResource(R.mipmap.ic_launcher, "在线测试", Constants.URL_ONLIE_TEST, TYPE_URL));
         datas.add(new MainResource(R.mipmap.ic_launcher, "RxJava", "", TYPE_RXJAVA));
 
-        datas.add(new MainResource(R.mipmap.ic_launcher, "React Native", "", TYPE_REACT_NATIVE));
-        datas.add(new MainResource(R.mipmap.ic_launcher, "4444444", "", ""));
         mAdapter.setDatas(datas);
         mRvResource.setAdapter(mAdapter);
     }
