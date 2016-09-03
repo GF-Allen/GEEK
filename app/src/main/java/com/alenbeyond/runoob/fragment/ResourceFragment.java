@@ -14,6 +14,7 @@ import com.alenbeyond.runoob.constant.Constants;
 import com.alenbeyond.runoob.fragment.base.BaseFragment;
 import com.alenbeyond.runoob.greendao.bean.MainResource;
 import com.alenbeyond.runoob.listenter.OnItemClickListener;
+import com.alenbeyond.runoob.test.SujinActivity;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,10 @@ public class ResourceFragment extends BaseFragment {
      */
     public static final String TYPE_RXJAVA = "type_rxjava";
 
+    /**
+     * React Native
+     */
+    public static final String TYPE_REACT_NATIVE = "type_react_native";
 
     @BindView(R.id.rv_resource)
     RecyclerView mRvResource;
@@ -78,6 +83,9 @@ public class ResourceFragment extends BaseFragment {
             case TYPE_ONLINE_READER:
                 startActivity(new Intent(getContext(), PdfResourceActivity.class).putExtra("title", data.getTitle()));
                 break;
+            case TYPE_REACT_NATIVE:
+                startActivity(new Intent(getContext(), SujinActivity.class));
+                break;
         }
     }
 
@@ -90,6 +98,7 @@ public class ResourceFragment extends BaseFragment {
         datas.add(new MainResource(R.mipmap.ic_launcher, "在线测试", Constants.URL_ONLIE_TEST, TYPE_URL));
         datas.add(new MainResource(R.mipmap.ic_launcher, "RxJava", "", TYPE_RXJAVA));
 
+        datas.add(new MainResource(R.mipmap.ic_launcher, "素锦", "", TYPE_REACT_NATIVE));
         mAdapter.setDatas(datas);
         mRvResource.setAdapter(mAdapter);
     }

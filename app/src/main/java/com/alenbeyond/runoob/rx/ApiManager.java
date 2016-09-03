@@ -15,6 +15,9 @@ import com.alenbeyond.runoob.resource.pdf.data.PdfResourceUtils;
 import com.alenbeyond.runoob.resource.rxjava.bean.AllOperators;
 import com.alenbeyond.runoob.resource.rxjava.bean.Operators;
 import com.alenbeyond.runoob.resource.rxjava.data.RxJavaDataUtils;
+import com.alenbeyond.runoob.test.SuJin;
+import com.alenbeyond.runoob.test.SuJinDes;
+import com.alenbeyond.runoob.test.SuJinHome;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -149,6 +152,28 @@ public class ApiManager {
             @Override
             public List<RNApiSub> call() throws Exception {
                 return ReactNative.getApiSub(groupId + "");
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    public static void getObSujinHome(final int page, Observer<List<SuJinHome>> subscribe) {
+        Observable.fromCallable(new Callable<List<SuJinHome>>() {
+            @Override
+            public List<SuJinHome> call() throws Exception {
+                return SuJin.getSuJinHome(page);
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscribe);
+    }
+
+    public static void getObSujinDes(final String url, Observer<SuJinDes> subscribe) {
+        Observable.fromCallable(new Callable<SuJinDes>() {
+            @Override
+            public SuJinDes call() throws Exception {
+                return SuJin.getSujinDes(url);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

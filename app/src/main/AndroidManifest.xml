@@ -33,6 +33,7 @@
         <activity android:name=".activity.ReRxJavaAllActivity" />
         <activity android:name=".activity.ReRxJavaActivity" />
         <activity android:name=".activity.PdfResourceActivity" />
+        <activity android:name=".test.SujinActivity"></activity>
     </application>
 
 </manifest>
