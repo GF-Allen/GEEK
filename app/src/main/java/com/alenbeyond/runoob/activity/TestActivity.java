@@ -39,7 +39,7 @@ public class TestActivity extends BaseActivity {
                 .tag(this)
                 .execute(new FileCallback(Environment.getExternalStorageDirectory().getAbsolutePath(), "123.pdf") {
                     @Override
-                    public void onResponse(boolean isFromCache, File file, Request request, @Nullable Response response) {
+                    public void onSuccess(File file, Call call, Response response) {
                         Logger.d(file.getAbsolutePath().toString());
                         pdfView.fromFile(file)
                                 .swipeHorizontal(false)

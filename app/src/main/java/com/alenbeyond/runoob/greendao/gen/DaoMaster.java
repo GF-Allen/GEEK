@@ -21,22 +21,22 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
+        RNApiGroupDao.createTable(db, ifNotExists);
+        RNApiSubDao.createTable(db, ifNotExists);
         RunoobCategoryDao.createTable(db, ifNotExists);
         RunoobChapterDao.createTable(db, ifNotExists);
         RunoobItemDao.createTable(db, ifNotExists);
         AllOperatorsDao.createTable(db, ifNotExists);
-        RNApiGroupDao.createTable(db, ifNotExists);
-        RNApiSubDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
+        RNApiGroupDao.dropTable(db, ifExists);
+        RNApiSubDao.dropTable(db, ifExists);
         RunoobCategoryDao.dropTable(db, ifExists);
         RunoobChapterDao.dropTable(db, ifExists);
         RunoobItemDao.dropTable(db, ifExists);
         AllOperatorsDao.dropTable(db, ifExists);
-        RNApiGroupDao.dropTable(db, ifExists);
-        RNApiSubDao.dropTable(db, ifExists);
     }
 
     /**
@@ -55,12 +55,12 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
+        registerDaoClass(RNApiGroupDao.class);
+        registerDaoClass(RNApiSubDao.class);
         registerDaoClass(RunoobCategoryDao.class);
         registerDaoClass(RunoobChapterDao.class);
         registerDaoClass(RunoobItemDao.class);
         registerDaoClass(AllOperatorsDao.class);
-        registerDaoClass(RNApiGroupDao.class);
-        registerDaoClass(RNApiSubDao.class);
     }
 
     public DaoSession newSession() {
